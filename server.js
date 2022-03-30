@@ -10,12 +10,14 @@ var corsOptions = {
 require("dotenv").config();
 
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "20mb" }));
+app.use(express.urlencoded({ extended: true, limit: "20mb" }));
+
 const db = require("./src/models");
 db.sequelize.sync();
 
 require("./src/routes/user.routes")(app);
+require("./src/routes/location.routes")(app);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

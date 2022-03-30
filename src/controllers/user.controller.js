@@ -22,8 +22,7 @@ exports.signup = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Tutorial.",
+        message: err.message || "Some error occurred while creating the User.",
       });
     });
 };
@@ -41,14 +40,14 @@ exports.signin = (req, res) => {
   })
     .then((data) => {
       if (data !== null) {
-        res.send(data);
+        res.status(200).send(data);
+      } else {
+        res.status(404).send({ message: "E-mail ou senha incorretos" });
       }
-      res.status(404).send({ message: "E-mail ou senha incorretos" });
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Tutorial.",
+        message: err.message || "Some error occurred while creating the User.",
       });
     });
 };
