@@ -7,7 +7,7 @@ var corsOptions = {
   origin: "http://localhost:8081",
 };
 
-require("dotenv").config();
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: "20mb" }));
