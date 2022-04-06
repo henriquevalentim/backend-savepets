@@ -32,3 +32,16 @@ exports.create = (req, res) => {
       });
     });
 };
+
+exports.getAll = (req, res) => {
+  Location.findAll()
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Location.",
+      });
+    });
+};
