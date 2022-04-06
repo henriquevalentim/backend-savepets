@@ -1,6 +1,12 @@
 const db = require("../models");
 const Location = db.locations;
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 exports.create = (req, res) => {
   if (
     !req.body.latitude ||
@@ -14,11 +20,21 @@ exports.create = (req, res) => {
     return;
   }
 
+  var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/, "");
+
+  const randomNumber = getRandomInt(10000, 99999);
+  const filePath = `${process.env.PATH_IMAGE}\\IMG-${randomNumber}.jpeg`;
+  const urlImage = `${process.env.URL_IMAGE}IMG-${randomNumber}.jpeg`;
+
+  require("fs").writeFile(filePath, base64Data, "base64", function (err) {
+    console.log(err);
+  });
+
   const location = {
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     description: req.body.description,
-    image: req.body.image,
+    url_image: urlImage,
   };
 
   Location.create(location)

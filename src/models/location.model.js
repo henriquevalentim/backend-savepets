@@ -18,8 +18,8 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    image: {
-      type: Sequelize.TEXT,
+    url_image: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
   });
