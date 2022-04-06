@@ -23,7 +23,7 @@ exports.create = (req, res) => {
   var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/, "");
 
   const randomNumber = getRandomInt(10000, 99999);
-  const filePath = `${process.env.PATH_IMAGE}\\IMG-${randomNumber}.jpeg`;
+  const filePath = `${process.env.PATH_IMAGE}/IMG-${randomNumber}.jpeg`;
   const urlImage = `${process.env.URL_IMAGE}IMG-${randomNumber}.jpeg`;
 
   require("fs").writeFile(filePath, base64Data, "base64", function (err) {
