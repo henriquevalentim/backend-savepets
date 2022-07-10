@@ -20,6 +20,13 @@ exports.create = (req, res) => {
     return;
   }
 
+  if (!req.body.userId) {
+    res.status(400).send({
+      message: "Atualize o aplicativo para nova versão",
+    });
+    return;
+  }
+
   var base64Data = req.body.image.replace(/^data:image\/jpeg;base64,/, "");
 
   const randomNumber = getRandomInt(10000, 99999);
@@ -35,6 +42,7 @@ exports.create = (req, res) => {
     longitude: req.body.longitude,
     description: req.body.description,
     url_image: urlImage,
+    userId: req.body.userId,
   };
 
   Location.create(location)
@@ -56,8 +64,19 @@ exports.getAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Location.",
+        message: err.message || "Some error occurred while get all location.",
+      });
+    });
+};
+
+exports.getAllByIdUser = (req, res) => {
+  Location.findAll({ where: { userId: req.params?.userId } })
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while get all location.",
       });
     });
 };

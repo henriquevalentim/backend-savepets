@@ -22,6 +22,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    userId: {
+      type: Sequelize.INTEGER, //TODO: adicionar referencia para o usuario
+      allowNull: false,
+    },
   });
 
   return Location;
