@@ -24,4 +24,4 @@ node server.js
 
 ## Authors
 
-[Henrique Valentim](https://www.linkedin.com/in/henrique-valentim)
+[Henrique Valentim](www.linkedin.com/in/henrique-valentim)
